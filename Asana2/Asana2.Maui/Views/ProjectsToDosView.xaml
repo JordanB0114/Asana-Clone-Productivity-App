@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Asana2.Maui.Views.ProjectsToDosView"
+             Title="ProjectsToDosView">
+    <ScrollView>
+        <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--ToDo List-->
+                <ListView
+                Grid.Row="1"
+                ItemsSource="{Binding ToDos}"
+                SelectedItem="{Binding SelectedToDo}"
+                >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox IsChecked="{Binding IsCompleted}" Grid.Column="0"/>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Label TextColor="Red" Grid.Row="0" Text="{Binding Name}"/>
+                                        <Label Grid.Row="1" Text="{Binding Description}"/>
+
+                                    </Grid>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            
+            </Grid>
+            <Button Text="Back To Poject Page" Clicked="ProjectPageClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

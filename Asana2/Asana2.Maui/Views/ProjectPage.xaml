@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Asana2.Maui.Views.ProjectPage"
+             Title="ProjectPage"
+             NavigatedFrom="ContentPage_NavigatedFrom"
+             NavigatedTo="ContentPage_NavigatedTo">
+        
+    
+    <ScrollView>
+        <VerticalStackLayout>
+            <SearchBar Placeholder="Search Projects"
+                Text="{Binding ProjectSearchText, Mode=TwoWay}"
+                SearchCommand="{Binding FilterProjectsCommand}" />
+            
+            <Button Grid.Column="2" Text="Sort by Priority" Clicked="SortClicked" />
+
+
+            <ListView
+                Grid.Row="1"
+                ItemsSource="{Binding FilteredProjects}"
+                SelectedItem="{Binding SelectedProject}"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label TextColor="Red" Grid.Row="0" Text="{Binding Name}"/>
+                                    <Label Grid.Row="1" Text="{Binding Description}"/>
+                                </Grid>
+                                <Button Grid.Column="1" Text="Delete"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add New Project" Clicked="AddProjectClicked"/>
+            <Button Text="Edit Project" Clicked="EditProjectClicked"/>
+            <Button Text="Delete Project" Clicked="DeleteProjectClicked"/>
+            <Button Text="Show Project's To Do List" Clicked="ShowToDosClicked"/>
+            <Button Text="Export Projects" Clicked="OnExportProjectsClicked"/>
+            <Button Text="Import Projects" Clicked="OnImportProjectsClicked"/>
+            <Button Text="Home Page" Clicked="HomePageClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
